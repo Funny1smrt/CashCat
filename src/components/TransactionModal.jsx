@@ -9,6 +9,8 @@ function TransactionModal() {
         spendMoney,
         incomeMoney,
         handleInputChange,
+        handleCheckboxChange,
+        agreed,
     } = useTransaction();
     const { inputs, isSpendModalOpen,
         setIsSpendModalOpen, isIncomeModalOpen,
@@ -57,8 +59,8 @@ function TransactionModal() {
                     className="p-2 border"
                     type="checkbox"
                     name="isPeriod"
-                    value={inputs.isPeriod}
-                    onChange={handleInputChange}
+                    checked={agreed}
+                    onChange={handleCheckboxChange}
                 />
                 <button
                     className="border p-2"
@@ -95,8 +97,8 @@ function TransactionModal() {
                     className="p-2 border"
                     type="checkbox"
                     name="isPeriod"
-                    value={true}
-                    onChange={handleInputChange}
+                    checked={agreed}
+                    onChange={handleCheckboxChange}
                 />
                 <button
                     className="border p-2"

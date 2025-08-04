@@ -19,6 +19,11 @@ function Accounts() {
 
       <div className="flex flex-col justify-start items-center p-4 gap-2 h-full w-full mb-20">
         <h1 className="text-3xl">Рахунки</h1>
+        {accounts.length > 0 && (
+          <div>
+            <p>Всього рахунків: {accounts.length}</p>
+          </div>
+        )}
         
         <button
           className="border px-4 py-2 rounded hover:bg-gray-200 hover:shadow-lg"
@@ -44,13 +49,9 @@ function Accounts() {
           >
             Додати
           </button>
-          </Modal>
+        </Modal>
         <div className="flex flex-col p-2 gap-2">
-          {accounts.length >= 0 && (
-            <div>
-              <p>Всього рахунків: {accounts.length}</p>
-            </div>
-          )}
+          
           {accounts.map((account) => (
             <div key={account.id} className="flex flex-col justify-between items-center p-2 border rounded">
               <h1>{account.name}</h1>
@@ -73,6 +74,7 @@ function Accounts() {
                 </button>
 
               </div>
+              
               <Modal
                 isOpen={editAccount === account.id}
                 onClose={() => setEditAccount(null)}

@@ -1,4 +1,4 @@
-import { useContext, useEffect, useState } from "react";
+import { useContext } from "react";
 import { AccountContext } from "../context/AccountContext";
 import { TransactionContext } from "../context/TransactionContext";
 import useMassage from "./useMassage";
@@ -13,14 +13,8 @@ function useTransaction() {
   const { setCategories } = useContext(CategoryContext);
   const { activeAccount } = useContext(AccountContext);
   const { accounts, setAccounts } = useContext(AccountContext);
-
-
   const { showWarning } = useMassage();
-  const [agreed, setAgreed] = useState(false);
 
-  const handleCheckboxChange = (event) => {
-    setAgreed(event.target.checked);
-  };
   // useEffect(() => {
   //   let allMoney = 0;
   //   accounts.forEach((account) => {
@@ -28,7 +22,6 @@ function useTransaction() {
   //   });
   //   setMoney(allMoney);
   // }, [accounts, setMoney]);
-
 
   function handleInputChange(e) {
     const { name, value } = e.target;
@@ -47,7 +40,7 @@ function useTransaction() {
         type: type,
         account: account.name,
         category: inputs.category ? inputs.category : "Інше", // Default category, can be changed later
-        period: agreed,
+        period: period,
         amount: Number(amount),
         allMoney: account.balance,
         afterMoney:
@@ -127,12 +120,16 @@ function useTransaction() {
       return;
     }
     if (isNaN(Number(inputs.spend)) || Number(inputs.spend) <= 0) return;
-    transaction("spend", inputs.spend, activeAccount, new Date(), InputEvent.isPeriod);
+    transaction("spend", inputs.spend, activeAccount, new Date(), false);
 
-    setInputs((prev) => ({ ...prev, spend: "", category: "", isPeriod: false }));
+    setInputs((prev) => ({
+      ...prev,
+      spend: "",
+      category: "",
+      isPeriod: false,
+    }));
     setIsSpendModalOpen(false);
-      console.log(transactions[transactions.length - 1]);
-
+    console.log(transactions[transactions.length - 1]);
   }
 
   function incomeMoney() {
@@ -141,11 +138,15 @@ function useTransaction() {
       return;
     }
     if (isNaN(Number(inputs.income)) || Number(inputs.income) <= 0) return;
-    transaction("income", inputs.income, activeAccount, new Date(), inputs.isPeriod);
-    setInputs((prev) => ({ ...prev, income: "", category: "", isPeriod: false }));
+    transaction("income", inputs.income, activeAccount, new Date(), false);
+    setInputs((prev) => ({
+      ...prev,
+      income: "",
+      category: "",
+      isPeriod: false,
+    }));
     setIsIncomeModalOpen(false);
-      console.log(transactions[transactions.length - 1]);
-
+    console.log(transactions[transactions.length - 1]);
   }
 
   function resetAll() {

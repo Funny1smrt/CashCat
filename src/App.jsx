@@ -8,24 +8,27 @@ import MessageProvider from "./context/MessageContext.jsx";
 import TransactionProvider from "./context/TransactionContext.jsx";
 import AccountProvider from "./context/AccountContext.jsx";
 import CategoryProvider from "./context/CategoryContext.jsx";
+import NavigationProvider from "./context/NavigationContext.jsx";
 function App() {
   return (
-    <MessageProvider>
-      <CategoryProvider>
-        <TransactionProvider>
-          <AccountProvider>
-            <Routes>
-              <Route path="/" element={<Home />} />
-              <Route path="/transactions" element={<Transactions />} />
-              <Route path="/settings" element={<Settings />} />
-              <Route path="/accounts" element={<Accounts />} />
-              <Route path="/planes" element={<Planes />} />
-              {/* Add more routes as needed */}
-            </Routes>
-          </AccountProvider>
-        </TransactionProvider>
-      </CategoryProvider>
-    </MessageProvider>
+    <NavigationProvider>
+      <MessageProvider>
+        <CategoryProvider>
+          <TransactionProvider>
+            <AccountProvider>
+              <Routes>
+                <Route path="/" element={<Home />} />
+                <Route path="/transactions" element={<Transactions />} />
+                <Route path="/settings" element={<Settings />} />
+                <Route path="/accounts" element={<Accounts />} />
+                <Route path="/planes" element={<Planes />} />
+                {/* Add more routes as needed */}
+              </Routes>
+            </AccountProvider>
+          </TransactionProvider>
+        </CategoryProvider>
+      </MessageProvider>
+    </NavigationProvider>
 
   );
 }

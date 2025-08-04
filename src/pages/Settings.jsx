@@ -4,16 +4,13 @@ import useTransaction from "../hooks/useTransaction";
 import { useContext } from "react";
 import { TransactionContext } from "../context/TransactionContext";
 import { CategoryContext } from "../context/CategoryContext";
-import { useNavigate } from "react-router-dom";
+import { NavigationContext } from "../context/NavigationContext";
 import useCategory from "../hooks/useCategory";
 
 
 function Settings() {
-    const navigate = useNavigate();
 
-    function goToAccounts() {
-        navigate("/accounts");
-    }
+    const { goToAccounts } = useContext(NavigationContext);
 
     const {
         handleInputChange, resetAll
