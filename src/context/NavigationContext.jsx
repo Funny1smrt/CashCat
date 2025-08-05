@@ -1,10 +1,14 @@
 import { NavigationContext } from "./NavigationContext";
 import { useNavigate } from "react-router-dom";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 function NavigationProvider({ children }) {
     const navigate = useNavigate();
-    const [page, setPage] = useState("/");
+    const [page, setPage] = useState("");
+
+    useEffect(() => {
+        setPage(window.location.pathname);
+    }, [navigate]);
 
 
     function goToAccounts() {

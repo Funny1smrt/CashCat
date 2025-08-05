@@ -1,13 +1,19 @@
 import { Link } from "react-router-dom";
-
+import { NavigationContext } from "../context/NavigationContext";
+import { useContext } from "react";
 function NavBar() {
+    const { goBack,page } = useContext(NavigationContext);
+    
     return (
-        <div className="flex justify-between items-center gap-4 fixed bottom-0 p-4 border-t bg-white overflow-x-auto w-full z-50">
+        <>
+            {page !== "/" && page !== "/settings" &&
+                <button className="border p-2 rounded-full m-2 fixed top-0 left-0" onClick={goBack}>Назад</button>
+
+            }
+
+        <div className="flex justify-between items-center gap-4 fixed bottom-0 p-4 border-t bg-white overflow-x-auto w-full z-50 text-xs">
             <Link to="/" className="border px-4 py-2 rounded hover:bg-gray-200 hover:shadow-lg">
                 Головна
-            </Link>
-            <Link to="/transactions" className="border px-4 py-2 rounded hover:bg-gray-200 hover:shadow-lg">
-                Транзакції
             </Link>
             <Link to="/planes" className="border px-4 py-2 rounded hover:bg-gray-200 hover:shadow-lg">
                 Плани
@@ -16,7 +22,8 @@ function NavBar() {
                 Налаштування
             </Link>
             
-        </div>
+            </div>
+        </>
     );
 }
 export default NavBar;
