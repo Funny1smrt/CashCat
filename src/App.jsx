@@ -9,6 +9,8 @@ import TransactionProvider from "./context/TransactionContext.jsx";
 import AccountProvider from "./context/AccountContext.jsx";
 import CategoryProvider from "./context/CategoryContext.jsx";
 import NavigationProvider from "./context/NavigationContext.jsx";
+import LoginForm from "./pages/LoginForm.jsx";
+import TestPaged from "./pages/TestPage.jsx";
 function App() {
   return (
     <NavigationProvider>
@@ -22,6 +24,8 @@ function App() {
                 <Route path="/settings" element={<Settings />} />
                 <Route path="/accounts" element={<Accounts />} />
                 <Route path="/planes" element={<Planes />} />
+                <Route path="/login" element={<LoginForm />} />\
+                <Route path="/test" element={<TestPaged />} />
                 {/* Add more routes as needed */}
               </Routes>
             </AccountProvider>

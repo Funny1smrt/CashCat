@@ -5,10 +5,14 @@ import { AccountContext } from "../context/AccountContext";
 import { NavigationContext } from "../context/NavigationContext";
 import { useContext } from "react";
 import Messages from "../components/Messages";
+
+
 function Home() {
     const { goToAccounts } = useContext(NavigationContext);
     const { money, transactions } = useContext(TransactionContext);
     const { accounts, position, setPosition, activeAccount } = useContext(AccountContext);
+
+
     return (
         <>
             <div className="flex flex-col justify-center items-center gap-2 h-full w-full mb-20">

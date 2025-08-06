@@ -44,6 +44,11 @@ function NavigationProvider({ children }) {
         navigate(1);
     }
 
+    function goToTest() {
+        navigate("/test");
+        setPage("/test");
+    }
+
     return (
         <NavigationContext.Provider value={{
             goToAccounts,
@@ -54,7 +59,8 @@ function NavigationProvider({ children }) {
             goBack,
             goForward,
             page,
-            setPage
+            setPage,
+            goToTest
         }}>
             {children}
         </NavigationContext.Provider>
